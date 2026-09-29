@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Member — CVLab</title>
+<link rel="icon" href="cvlab_iust_logo.jpeg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<nav class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html"><img class="brand-logo" src="cvlab_iust_logo.jpeg" alt="CVLab logo" height="44" /><span>CVLab<small>Iran University of Science and Technology</small></span></a>
+    <div class="nav-links"><a href="index.html#about">About</a><a href="index.html#research">Research</a><a href="index.html#members">Members</a></div>
+    <a class="btn btn-primary" href="index.html#members">← All members</a>
+  </div>
+</nav>
+
+<main class="container">
+  <a class="back" href="index.html#members">← Back to all members</a>
+  <div class="profile" id="profile"></div>
+  <div class="prev-next" id="prevnext"></div>
+</main>
+
+<footer>
+  <div class="container foot">
+    <div class="foot-brand"><img class="foot-logo" src="cvlab_iust_logo.jpeg" alt="" height="36" /><span><strong>CVLab</strong> · Iran University of Science and Technology</span></div>
+    <div>© 2026 CVLab</div>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script>
+const id = new URLSearchParams(location.search).get('id');
+const m = MEMBERS.find(x => x.id === id) || MEMBERS[0];
+document.title = m.name + ' — CVLab';
+const i = MEMBERS.indexOf(m);
+const prev = MEMBERS[(i - 1 + MEMBERS.length) % MEMBERS.length];
+const next = MEMBERS[(i + 1) % MEMBERS.length];
+
+document.getElementById('profile').innerHTML = `
+  <aside class="p-card">
+    <img src="${m.image}" alt="${m.name}" />
+    <div class="p-body">
+      <h1>${m.name}</h1>
+      <div class="p-role">${m.role} · ${m.category}</div>
+      <div class="tags">${m.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      <div class="p-meta">✉️ ${m.email}<br>📍 ${m.location}</div>
+      <div class="p-actions">
+        <a class="btn btn-primary" href="${m.github}" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="${m.linkedin}" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-ghost" href="mailto:${m.email}">Email</a>
+      </div>
+    </div>
+  </aside>
+  <div class="p-main">
+    <div class="panel"><h2>About</h2><p>${m.bio}</p></div>
+    <div class="panel"><h2>Research interests</h2><div class="tags">${(m.interests||m.tags).map(t=>`<span class="tag">${t}</span>`).join('')}</div></div>
+    <div class="panel"><h2>Education</h2><ul>${m.education.map(e=>`<li>${e}</li>`).join('') || '<li>—</li>'}</ul></div>
+    <div class="panel"><h2>Selected publications</h2>
+      ${(m.publications && m.publications.length) ? m.publications.map(p=>`<div class="pub">📄 ${p}</div>`).join('') : '<p style="color:var(--muted)">Publications coming soon.</p>'}
+    </div>
+    <div class="panel"><h2>Projects</h2><ul>${m.projects.map(p=>`<li>${p}</li>`).join('') || '<li>—</li>'}</ul></div>
+  </div>`;
+
+document.getElementById('prevnext').innerHTML = `
+  <a class="btn" href="member.html?id=${prev.id}">← ${prev.name}</a>
+  <a class="btn" href="member.html?id=${next.id}">${next.name} →</a>`;
+</script>
+</body>
+</html>
