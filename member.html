@@ -12,9 +12,11 @@
 <body>
 <nav class="nav">
   <div class="container nav-inner">
-    <a class="brand" href="index.html"><img class="brand-logo" src="cvlab_iust_logo.jpeg" alt="CVLab logo" height="44" /><span>CVLab<small>Iran University of Science and Technology</small></span></a>
-    <div class="nav-links"><a href="index.html#about">About</a><a href="index.html#research">Research</a><a href="index.html#members">Members</a></div>
-    <a class="btn btn-primary" href="index.html#members">← All members</a>
+    <a class="brand" href="index.html"><img class="brand-logo" src="IUST_logo.png" alt="IUST logo" height="44" /><span>CVLab<small>Iran University of Science and Technology</small></span></a>
+    <div class="nav-right">
+      <div class="nav-links"><a href="index.html#about">About</a><a href="index.html#research">Research</a><a href="index.html#publications">Publications</a><a href="index.html#contact">Contact</a></div>
+      <a class="btn btn-primary" href="index.html#members">← Members</a>
+    </div>
   </div>
 </nav>
 
@@ -45,7 +47,6 @@ document.getElementById('profile').innerHTML = `
     <img src="${m.image}" alt="${m.name}" />
     <div class="p-body">
       <h1>${m.name}</h1>
-      <div class="p-role">${m.role} · ${m.category}</div>
       <div class="tags">${m.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
       <div class="p-meta">✉️ ${m.email}<br>📍 ${m.location}</div>
       <div class="p-actions">
@@ -56,10 +57,18 @@ document.getElementById('profile').innerHTML = `
     </div>
   </aside>
   <div class="p-main">
+    <div class="panel panel-header">
+      <div class="header-row">
+        <div class="header-title">
+          <span class="role-badge">${m.role}</span>
+          <span class="category-badge">${m.category}</span>
+        </div>
+      </div>
+    </div>
     <div class="panel"><h2>About</h2><p>${m.bio}</p></div>
-    <div class="panel"><h2>Research interests</h2><div class="tags">${(m.interests||m.tags).map(t=>`<span class="tag">${t}</span>`).join('')}</div></div>
+    <div class="panel"><h2>Research Interests</h2><div class="tags">${(m.interests||m.tags).map(t=>`<span class="tag">${t}</span>`).join('')}</div></div>
     <div class="panel"><h2>Education</h2><ul>${m.education.map(e=>`<li>${e}</li>`).join('') || '<li>—</li>'}</ul></div>
-    <div class="panel"><h2>Selected publications</h2>
+    <div class="panel"><h2>Selected Publications</h2>
       ${(m.publications && m.publications.length) ? m.publications.map(p=>`<div class="pub">📄 ${p}</div>`).join('') : '<p style="color:var(--muted)">Publications coming soon.</p>'}
     </div>
     <div class="panel"><h2>Projects</h2><ul>${m.projects.map(p=>`<li>${p}</li>`).join('') || '<li>—</li>'}</ul></div>
