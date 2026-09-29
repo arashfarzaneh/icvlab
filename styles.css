@@ -104,9 +104,9 @@ h1 .uni{display:block;font-size:17px;font-weight:500;color:var(--muted);letter-s
 
 /* Featured (lab director) wide card */
 .director-section{margin-bottom:34px}
-.card-wide{grid-column:1/-1;flex-direction:row;height:220px;background:linear-gradient(120deg,#0c4a6e 0%,#0284c7 55%,#0ea5e9 100%);color:#fff;border:1px solid rgba(255,255,255,.14);box-shadow:0 24px 50px -22px rgba(8,47,73,.7);position:relative}
+.card-wide{grid-column:1/-1;flex-direction:row;min-height:220px;height:auto;background:linear-gradient(120deg,#0c4a6e 0%,#0284c7 55%,#0ea5e9 100%);color:#fff;border:1px solid rgba(255,255,255,.14);box-shadow:0 24px 50px -22px rgba(8,47,73,.7);position:relative}
 .card-wide::after{content:"";position:absolute;left:0;right:0;bottom:-22px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,rgba(56,189,248,.75) 18%,rgba(56,189,248,.75) 82%,transparent)}
-.card-wide .card-top{width:200px;height:100%;flex:none}
+.card-wide .card-top{width:200px;min-height:220px;height:auto;flex:none}
 .card-wide .card-top img{width:100%;height:100%;object-fit:cover;object-position:top}
 .card-wide .badge{font-size:11px;background:rgba(255,255,255,.95);color:var(--ink);top:10px;left:10px}
 .wide-body{display:flex;flex-direction:column;justify-content:space-between;padding:18px 24px 8px;flex:1;min-width:0;gap:12px}
@@ -180,10 +180,13 @@ footer{background:var(--navy);color:rgba(255,255,255,.68)}
 }
 @media(max-width:760px){
   .grid{grid-template-columns:repeat(2,1fr)}
-  .card-wide{flex-direction:column}
-  .card-wide .card-top{width:100%;height:170px}
-  .card-wide .card-top img{min-height:0;height:100%}
-  .wide-body{padding:20px 20px 8px}
+  .card-wide{flex-direction:column;height:auto;margin-bottom:28px}
+  .card-wide .card-top{width:100%;height:200px;min-height:200px}
+  .card-wide .card-top img{min-height:0;height:100%;object-fit:cover;object-position:top}
+  .wide-body{padding:18px 18px 12px;gap:14px}
+  .wide-details{flex-direction:column;align-items:flex-start;gap:10px}
+  .wide-meta{gap:8px}
+  .card-wide .card-foot{padding:12px 0 6px}
   .panel-cta{padding:28px 24px}
 }
 @media(max-width:560px){
@@ -192,4 +195,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.68)}
   .hero-top{flex-direction:column;align-items:flex-start;gap:22px}
   .hero-logo{height:104px}
   .section{padding-top:44px}
+  .card-wide .card-top{height:190px;min-height:190px}
+  .wide-head h3{font-size:18px}
+  .meta-item{font-size:12px;padding:3px 8px}
 }
