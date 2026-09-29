@@ -18,7 +18,7 @@
   <nav class="nav">
     <div class="container nav-inner">
       <a class="brand" href="index.html">
-        <img class="brand-logo" src="IUST_logo.png" alt="IUST logo" height="44" />
+        <img class="brand-logo" src="cvlab_iust_logo.jpeg" alt="ICVLab logo" height="44" />
         <span>ICVLab<small>Iran University of Science and Technology</small></span>
       </a>
       <div class="nav-right">
@@ -28,7 +28,7 @@
           <a href="#publications">Publications</a>
           <a href="#contact">Contact</a>
         </div>
-        <a class="btn btn-primary" href="#members">Members →</a>
+        <a class="btn btn-primary" href="#members">Members</a>
       </div>
     </div>
   </nav>
@@ -41,7 +41,7 @@
             <img class="hero-logo" src="cvlab_iust_logo.jpeg" alt="ICVLab logo" height="140" />
             <div>
               <span class="eyebrow"><span class="dot"></span><span id="lab-eyebrow"></span></span>
-              <h1>ICVLab<span class="uni">Iran University of Science and Technology</span></h1>
+              <h1><span class="icv">ICV</span>Lab<span class="uni">Iran University of Science and Technology<img class="uni-logo" src="IUST_logo.png" alt="IUST logo" height="32" /></span></h1>
             </div>
           </div>
           <p class="lead" id="hero-subtitle"></p>
@@ -49,8 +49,8 @@
         <div class="hero-meta">
           <dl class="hero-meta-list">
             <div>
-              <dt>Department</dt>
-              <dd id="fact-dept"></dd>
+              <dt>Location</dt>
+              <dd id="fact-loc"></dd>
             </div>
             <div>
               <dt>Email</dt>
@@ -58,8 +58,8 @@
             </div>
           </dl>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#contact">Contact the lab →</a>
-            <a class="btn btn-ghost btn-link" href="#members">Meet the team</a>
+            <a class="btn btn-primary" href="#contact">Contact the lab</a>
+            <a class="btn" href="#members">Meet the team</a>
           </div>
         </div>
       </div>
@@ -126,11 +126,13 @@
 
   <footer>
     <div class="container foot">
-      <div class="foot-brand"><img class="foot-logo" src="cvlab_iust_logo.jpeg" alt=""
-          height="36" /><span><strong>ICVLab</strong> · Iran University of Science and Technology<br><span
-            id="foot-uni"></span></span></div>
-      <div>Built as a lightweight static site — edit <strong>data.js</strong> to replace sample members.<br>© 2026
-        ICVLab</div>
+      <div class="foot-brand">
+        <img class="foot-logo" src="IUST_logo.png" alt="IUST logo" height="36" />
+        <span><strong>ICVLab</strong> · Iran University of Science and Technology<br><span id="foot-uni"></span></span>
+      </div>
+      <div class="foot-copy">
+        Department of Artificial Intelligence & Robotics<br>© 2026 ICVLab. All rights reserved.
+      </div>
     </div>
   </footer>
 
@@ -146,9 +148,9 @@
 
     document.getElementById('hero-subtitle').textContent = LAB_INFO.heroSubtitle;
     document.getElementById('lab-eyebrow').textContent = 'Open positions · MSc & PhD students';
-    document.getElementById('fact-dept').textContent = LAB_INFO.department;
+    if (document.getElementById('fact-dept')) document.getElementById('fact-dept').textContent = LAB_INFO.department;
     if (document.getElementById('fact-loc')) document.getElementById('fact-loc').textContent = LAB_INFO.location;
-    document.getElementById('fact-email').textContent = LAB_INFO.email;
+    if (document.getElementById('fact-email')) document.getElementById('fact-email').textContent = LAB_INFO.email;
     const founded = LAB_INFO.founded;
     if (document.getElementById('fact-year')) document.getElementById('fact-year').textContent = founded || '';
     document.getElementById('contact-email').textContent = LAB_INFO.email;
@@ -173,19 +175,22 @@
         <div class="wide-content">
           <div class="wide-head">
             <h3>${prof.name}</h3>
-            <span class="tag tag-cat">Associated Professor</span>
+            <div><span class="tag tag-cat">Associated Professor</span></div>
           </div>
           <p class="desc wide-desc">${prof.bio}</p>
-          <div class="wide-details">
+          <div class="wide-tags-row">
             <div class="tags">${prof.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+          </div>
+        </div>
+        <div class="card-foot wide-foot">
+          <div class="wide-foot-left">
+            <div class="socials">${iconBtn(prof.github, 'GitHub', gh)}${iconBtn(prof.linkedin, 'LinkedIn', li)}</div>
             <div class="wide-meta">
-              <span class="meta-item"><span class="meta-icon">✉️</span>${prof.email}</span>
+              <a class="meta-item meta-link" href="mailto:${prof.email}" onclick="event.stopPropagation()"><span class="meta-icon">✉️</span>${prof.email}</a>
+              <span class="meta-dot">·</span>
               <span class="meta-item"><span class="meta-icon">📍</span>${prof.location}</span>
             </div>
           </div>
-        </div>
-        <div class="card-foot">
-          <div class="socials">${iconBtn(prof.github, 'GitHub', gh)}${iconBtn(prof.linkedin, 'LinkedIn', li)}</div>
           <span class="view">View full profile →</span>
         </div>
       </div>
